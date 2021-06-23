@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>New IT Delivery Patterns : AWS Analytics 2 - Step 2: Crawl with Glue</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">New IT Delivery Patterns</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="295031660.html">AWS Analytics 2: Marketing Analytics with Quicksight</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            New IT Delivery Patterns : AWS Analytics 2 - Step 2: Crawl with Glue
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Karina Jonane</span>, last modified by <span class='editor'> Thomas R. Evans</span> on May 12, 2021
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <div class="contentLayout2">
+<div class="columnLayout single" data-layout="single">
+<div class="cell normal" data-type="normal">
+<div class="innerCell">
+<p>In this step, you will use AWS Glue to automatically discover and structure your data so that it can be queried with analytical tools.  <strong>What is Glue?</strong>  AWS Glue is a managed ETL (extract, transform, load) service that makes it easy to prepare and load data for analytics.  <a href="https://aws.amazon.com/glue/" class="external-link" rel="nofollow">Learn more about AWS Glue</a>.    </p><p>With <a href="https://docs.aws.amazon.com/glue/latest/dg/components-key-concepts.html" class="external-link" rel="nofollow">AWS Glue</a> <strong>the first step is to <span style="color: rgb(68,68,68);">d</span><span style="color: rgb(68,68,68);">efine a </span>crawler</strong><span style="color: rgb(68,68,68);"> to populate the Glue Data Catalog with metadata table definitions. Users</span> point the crawler at a data store, and the crawler creates table definitions in the Data Catalog. In addition to table definitions, the AWS Glue Data Catalog contains other metadata that is required to define <a href="https://docs.aws.amazon.com/glue/latest/dg/components-overview.html#etl-script-intro" class="external-link" rel="nofollow">ETL</a> jobs. <span style="color: rgb(68,68,68);"><br/></span><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" width="600" src="attachments/295031676/295039492.png" data-image-src="attachments/295031676/295039492.png" data-unresolved-comment-count="0" data-linked-resource-id="295039492" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="HowItWorks-GLUEoverview.png" data-base-url="https://alm.accenture.com/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="295031676" data-linked-resource-container-version="60"></span><br/><strong><em><sup><sub><span style="color: rgb(68,68,68);">© Amazon Web Services, Inc. <br/></span></sub></sup></em></strong><span class="inline-comment-marker" data-ref="3bd1ead6-d78c-4981-a8a3-9ae5acd6b5bd"><br/>This exercise uses the</span> AWS Glue service to query an Amazon S3 Data Lake. In other words, you are going to create <strong>crawler</strong> - a<span style="color: rgb(68,68,68);"> program that connects to a data store (source or target), progresses through a prioritized list of classifiers to determine the schema for your data, and then creates metadata in the AWS Glue Data Catalog.</span></p><div class="confluence-information-macro confluence-information-macro-information"><p class="title">Tables and databases are objects containing metadata only</p><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p><span style="color: rgb(68,68,68);">Tables and databases in AWS Glue are objects in the AWS Glue Data Catalog. They contain metadata; <strong>they don't contain data from a data store</strong> </span>(which in this exercise is the data your reviewed residing in the shared S3 bucket)<span style="color: rgb(68,68,68);">.</span></p></div></div></div>
+</div>
+</div>
+<div class="columnLayout single" data-layout="single">
+<div class="cell normal" data-type="normal">
+<div class="innerCell">
+<hr/><h3 id="AWSAnalytics2Step2:CrawlwithGlue-AccessAWSGlue">Access AWS Glue</h3><ol><li>Find the <strong>AWS Glue</strong> service in AWS Services list by searching for <strong>&quot;glue&quot;</strong> with the Quick Search function <strong>Click the returned service entry</strong>.<br/><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" width="555" src="attachments/295031676/442173810.png" data-image-src="attachments/295031676/442173810.png" data-unresolved-comment-count="0" data-linked-resource-id="442173810" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2021-5-12_11-39-52.png" data-base-url="https://alm.accenture.com/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="295031676" data-linked-resource-container-version="60"></span><br/>If this is your first time in the Glue service, you may see a Welcome screen. Just<strong> click Get started</strong> to continue.<br/><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" width="600" src="attachments/295031676/295031678.png" data-image-src="attachments/295031676/295031678.png" data-unresolved-comment-count="0" data-linked-resource-id="295031678" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2018-4-19 15:24:31.png" data-base-url="https://alm.accenture.com/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="295031676" data-linked-resource-container-version="60"></span><br/><br/></li><li>In the <strong>AWS Glue console</strong>, find the Data Catalog entries in the left-hand navigation area and click <strong>Crawlers</strong>.<br/><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" width="222" src="attachments/295031676/295031688.png" data-image-src="attachments/295031676/295031688.png" data-unresolved-comment-count="0" data-linked-resource-id="295031688" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2018-4-24 2:28:57.png" data-base-url="https://alm.accenture.com/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="295031676" data-linked-resource-container-version="60"></span></li></ol><hr/><h3 id="AWSAnalytics2Step2:CrawlwithGlue-CreateyourGlueCrawler">Create your Glue Crawler</h3><p><span style="color: rgb(0,0,0);">The crawler connects to your data store in S3 and automatically determines its structure to create the metadata for your table.</span></p><ul><li>Click <strong>Add crawler.<br/><span class="confluence-embedded-file-wrapper"><img class="confluence-embedded-image" src="attachments/295031676/295031689.png" data-image-src="attachments/295031676/295031689.png" data-unresolved-comment-count="0" data-linked-resource-id="295031689" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2018-4-24 2:31:7.png" data-base-url="https://alm.accenture.com/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="295031676" data-linked-resource-container-version="60"></span></strong></li><li><p>Step through the Add Crawler wizard as detailed below:</p><img class="wysiwyg-unknown-macro" src="../plugins/servlet/confluence/placeholder/unknown-macro"/><p><br/><br/></p><div class="table-wrap"><table class="wrapped confluenceTable"><colgroup><col/></colgroup><tbody><tr><td class="highlight-green confluenceTd" data-highlight-colour="green"><strong>Add information about your crawler:</strong></td></tr><tr><td class="confluenceTd"><div class="content-wrapper"><strong><img class="emoticon emoticon-tick" src="images/icons/emoticons/check.svg" data-emoticon-name="tick" alt="(tick)"/><span> </span>Name your crawler so that you can identify it when referencing it later</strong><span>. <br/>You can leave Description and classifiers (optional) unmodified. Click </span><strong>Next</strong><span>.</span><br/><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" height="250" src="attachments/295031676/295031680.png" data-image-src="attachments/295031676/295031680.png" data-unresolved-comment-count="0" data-linked-resource-id="295031680" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2018-4-24 15:39:16.png" data-base-url="https://alm.accenture.com/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="295031676" data-linked-resource-container-version="60"></span></div></td></tr><tr><th class="highlight-green confluenceTh" data-highlight-colour="green"><strong>Add a data store:</strong></th></tr><tr><td class="confluenceTd"><div class="content-wrapper"><p><img class="emoticon emoticon-tick" src="images/icons/emoticons/check.svg" data-emoticon-name="tick" alt="(tick)"/> Select <strong>Data store </strong>as the <strong>Crawler source type</strong>.<br/><img class="emoticon emoticon-tick" src="images/icons/emoticons/check.svg" data-emoticon-name="tick" alt="(tick)"/> Select <strong>Crawl all folders </strong>as the <strong>Repeat crawls</strong> setting and click <strong>Next</strong>.</p><p>    <span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" width="400" src="attachments/295031676/416669766.png" data-image-src="attachments/295031676/416669766.png" data-unresolved-comment-count="0" data-linked-resource-id="416669766" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2020-12-9_8-47-4.png" data-base-url="https://alm.accenture.com/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="295031676" data-linked-resource-container-version="60"></span></p><p><img class="emoticon emoticon-tick" src="images/icons/emoticons/check.svg" data-emoticon-name="tick" alt="(tick)"/> Confirm that <strong>Data store </strong>is set to <strong>S3.</strong> Confirm that <strong>Crawl data in</strong> is set to <strong>Specified path in my account</strong>.<br/><strong><span class="confluence-embedded-file-wrapper"><img class="confluence-embedded-image" src="attachments/295031676/295031681.png" data-image-src="attachments/295031676/295031681.png" data-unresolved-comment-count="0" data-linked-resource-id="295031681" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2018-4-24 15:45:23.png" data-base-url="https://alm.accenture.com/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="295031676" data-linked-resource-container-version="60"></span><br/></strong><img class="emoticon emoticon-tick" src="images/icons/emoticons/check.svg" data-emoticon-name="tick" alt="(tick)"/><span> </span>Populate<strong> Include path </strong>as follows: • Click on the folder icon to choose the S3 path to the file to be crawled. <br/><span class="confluence-embedded-file-wrapper"><img class="confluence-embedded-image" src="attachments/295031676/295031682.png" data-image-src="attachments/295031676/295031682.png" data-unresolved-comment-count="0" data-linked-resource-id="295031682" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2018-4-24 15:46:35.png" data-base-url="https://alm.accenture.com/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="295031676" data-linked-resource-container-version="60"></span><br/><strong>Note:</strong> if you do not see a selection dialog after clicking the folder icon, try a different web browser.<br/><br/><img class="emoticon emoticon-tick" src="images/icons/emoticons/check.svg" data-emoticon-name="tick" alt="(tick)"/><span> </span>You will be crawling a shared test file located in an S3 bucket specific to the AWS account you are using</p><p><strong><strong><span style="color: rgb(51,153,102);"><strong>::: </strong></span></strong><span>if you are using the cmt-cloud-native-001 account </span></strong><span style="color: rgb(0,0,0);">expand the<strong> </strong><strong>cmt-cn-glue </strong>bucket<strong> </strong>path</span></p><p><strong style="color: rgb(0,0,0);letter-spacing: 0.0px;"><span style="color: rgb(51,153,102);"><strong>::: </strong></span>if you are using the cmt-cloud-native-002 account </strong><span style="color: rgb(0,0,0);">expand the<strong> </strong><strong>cmt-cn-002-glue </strong>bucket path </span></p><p><span style="color: rgb(0,0,0);"><strong><strong><span style="color: rgb(51,153,102);"><strong>::: </strong></span></strong>if you are using the cmt-cloud-native-003 account </strong><span style="color: rgb(0,0,0);">expand the<strong> <span style="color: rgb(0,0,0);">cmt-cn-003-glue</span></strong><strong> </strong>bucket path </span><br/></span></p><p><br/>• <strong>tick the radio button next to Product-Marketing-data.</strong><br/><strong><span style="color: rgb(255,0,0);">Note! <span style="color: rgb(0,0,0);">Select only the folder holding the file you intend to have crawled. Do not select the file itself. </span><br/></span></strong><br/><span style="color: rgb(0,0,0);"><img class="emoticon emoticon-tick" src="images/icons/emoticons/check.svg" data-emoticon-name="tick" alt="(tick)"/><span> </span>When the relevant folder is selected, click the </span><strong>Select </strong><span style="color: rgb(0,0,0);">button below the window to see your selected S3 path populated.</span><br/><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" width="333" src="attachments/295031676/295032785.png" data-image-src="attachments/295031676/295032785.png" data-unresolved-comment-count="0" data-linked-resource-id="295032785" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="img-17.07.2018-03.png" data-base-url="https://alm.accenture.com/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="295031676" data-linked-resource-container-version="60"></span><span style="color: rgb(0,0,0);"><br/><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" width="317" src="attachments/295031676/295032787.png" data-image-src="attachments/295031676/295032787.png" data-unresolved-comment-count="0" data-linked-resource-id="295032787" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="img-17.07.2018-04.png" data-base-url="https://alm.accenture.com/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="295031676" data-linked-resource-container-version="60"></span></span><br/><img class="emoticon emoticon-tick" src="images/icons/emoticons/check.svg" data-emoticon-name="tick" alt="(tick)"/><span> </span>Ignore the <strong>Exclude patterns</strong> option. Click <strong>Next</strong>.</p></div></td></tr><tr><th class="highlight-green confluenceTh" data-highlight-colour="green">Add another data store:</th></tr><tr><td class="confluenceTd"><div class="content-wrapper"><span><img class="emoticon emoticon-tick" src="images/icons/emoticons/check.svg" data-emoticon-name="tick" alt="(tick)"/><span> </span>Select </span><strong>No</strong><span> to the option of adding another data store and click </span><strong>Next</strong><span>. <br/><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image confluence-thumbnail" width="222" src="attachments/295031676/295031696.png" data-image-src="attachments/295031676/295031696.png" data-unresolved-comment-count="0" data-linked-resource-id="295031696" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2018-5-9 10:38:54.png" data-base-url="https://alm.accenture.com/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="295031676" data-linked-resource-container-version="60"></span> </span></div></td></tr><tr><th class="highlight-green confluenceTh" data-highlight-colour="green"><strong>IAM Role:</strong></th></tr><tr><td class="confluenceTd"><div class="content-wrapper"><p><span>Select the </span><strong>Choose an existing IAM role </strong><span>option. and select the </span><span>IAM role <strong>'AWSanalytics2'</strong>. </span><br/><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" height="250" src="attachments/295031676/418667465.png" data-image-src="attachments/295031676/418667465.png" data-unresolved-comment-count="0" data-linked-resource-id="418667465" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2021-1-7_14-3-25.png" data-base-url="https://alm.accenture.com/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="295031676" data-linked-resource-container-version="60"></span></p><div class="confluence-information-macro confluence-information-macro-warning"><p class="title">Double-check your selected IAM role!</p><span class="aui-icon aui-icon-small aui-iconfont-error confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p><span>There are multiple IAM roles to choose from...Double-check to confirm you've selected the <strong>AWSanalytics2</strong></span><span> IAM role.</span></p></div></div><p><span style="letter-spacing: 0.0px;"><br/>Click </span><strong style="letter-spacing: 0.0px;">Next</strong><span style="letter-spacing: 0.0px;">.</span></p></div></td></tr><tr><th class="highlight-green confluenceTh" data-highlight-colour="green"><strong>Schedule:</strong></th></tr><tr><td class="confluenceTd"><div class="content-wrapper"><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" width="333" src="attachments/295031676/295031697.png" data-image-src="attachments/295031676/295031697.png" data-unresolved-comment-count="0" data-linked-resource-id="295031697" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2018-5-9 10:41:39.png" data-base-url="https://alm.accenture.com/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="295031676" data-linked-resource-container-version="60"></span><br/><span>Confirm that Frequency is set to </span><strong>Run on demand.</strong><span> Click </span><strong>Next</strong><span>.</span></div></td></tr><tr><th class="highlight-green confluenceTh" colspan="1" data-highlight-colour="green"><strong>Configure the crawler's Output:</strong></th></tr><tr><td colspan="1" class="confluenceTd"><div class="content-wrapper"><p>Click the <strong>Add database</strong> button, The Add database interface will drop into view<br/>. <span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" height="250" src="attachments/295031676/295031698.png" data-image-src="attachments/295031676/295031698.png" data-unresolved-comment-count="0" data-linked-resource-id="295031698" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2018-5-9 10:43:28.png" data-base-url="https://alm.accenture.com/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="295031676" data-linked-resource-container-version="60"></span><br/><strong>Give your database a name you will recognize</strong>. Ignore the optional Description and location. Click <strong>Create.</strong><br/><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" width="333" src="attachments/295031676/295031699.png" data-image-src="attachments/295031676/295031699.png" data-unresolved-comment-count="0" data-linked-resource-id="295031699" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2018-5-9 10:46:26.png" data-base-url="https://alm.accenture.com/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="295031676" data-linked-resource-container-version="60"></span><br/>The Add database interface will close.</p><p><strong>Leave the Prefix added to tables field blank.</strong><br/><strong>Leave Configuration options at their default values</strong> then click <strong>Next</strong>.</p><p><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" height="250" src="attachments/295031676/295031700.png" data-image-src="attachments/295031676/295031700.png" data-unresolved-comment-count="0" data-linked-resource-id="295031700" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2018-5-9 10:54:16.png" data-base-url="https://alm.accenture.com/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="295031676" data-linked-resource-container-version="60"></span></p></div></td></tr><tr><th class="highlight-green confluenceTh" colspan="1" data-highlight-colour="green">Final Review:</th></tr><tr><td colspan="1" class="confluenceTd"><div class="content-wrapper"><p><span>Review to confirm the crawler configuration, (You can step back in the wizard to make corrections as necessary.)<br/><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" width="444" src="attachments/295031676/418669630.png" data-image-src="attachments/295031676/418669630.png" data-unresolved-comment-count="0" data-linked-resource-id="418669630" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2021-1-8_12-29-49.png" data-base-url="https://alm.accenture.com/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="295031676" data-linked-resource-container-version="60"></span><br/>Click </span><strong>Finish</strong><span> to create the crawler</span><strong>.</strong></p></div></td></tr></tbody></table></div><p class="auto-cursor-target"><img class="wysiwyg-unknown-macro" src="../plugins/servlet/confluence/placeholder/unknown-macro"/></p></li></ul><hr/><h3 id="AWSAnalytics2Step2:CrawlwithGlue-Runthecrawler">Run the crawler</h3><p>From the crawlers list, you will  have the option to run the crawler you created. <strong>Tick the check box next to your crawler</strong> and click the <strong>Run crawler</strong> button at the top of the crawler list.</p><p><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" width="555" src="attachments/295031676/403204198.png" data-image-src="attachments/295031676/403204198.png" data-unresolved-comment-count="0" data-linked-resource-id="403204198" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2020-10-7_13-46-34.png" data-base-url="https://alm.accenture.com/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="295031676" data-linked-resource-container-version="60"></span></p><ul style="list-style-type: square;"><li>The crawler will go from <strong>Starting</strong> status to <strong>Stopping</strong> to <strong>Ready</strong> in the initial Run process.</li></ul><p><span class="confluence-embedded-file-wrapper"><img class="confluence-embedded-image" src="attachments/295031676/295031685.png" data-image-src="attachments/295031676/295031685.png" data-unresolved-comment-count="0" data-linked-resource-id="295031685" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2018-4-24 15:58:37.png" data-base-url="https://alm.accenture.com/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="295031676" data-linked-resource-container-version="60"></span><span class="confluence-embedded-file-wrapper"><img class="confluence-embedded-image" src="attachments/295031676/295031686.png" data-image-src="attachments/295031676/295031686.png" data-unresolved-comment-count="0" data-linked-resource-id="295031686" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2018-4-24 15:59:6.png" data-base-url="https://alm.accenture.com/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="295031676" data-linked-resource-container-version="60"></span><span class="confluence-embedded-file-wrapper"><img class="confluence-embedded-image" src="attachments/295031676/295031687.png" data-image-src="attachments/295031676/295031687.png" data-unresolved-comment-count="0" data-linked-resource-id="295031687" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2018-4-24 16:0:33.png" data-base-url="https://alm.accenture.com/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="295031676" data-linked-resource-container-version="60"></span><br/>Expect the crawler to take +/- 90 seconds to show <strong>Ready</strong> status. <strong>Do not be concerned that the status reports 'Stopping' during this process.</strong> This is expected behavior.</p><p>You can refresh the status output by clicking on the refresh link in the upper-right corner of the crawler listing.<br/><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image confluence-thumbnail" width="244" src="attachments/295031676/295260882.png" data-image-src="attachments/295031676/295260882.png" data-unresolved-comment-count="0" data-linked-resource-id="295260882" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2018-7-30 16:59:21.png" data-base-url="https://alm.accenture.com/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="295031676" data-linked-resource-container-version="60"></span><br/>You will see a status similar to the following when the crawler start-up process is complete.</p><p><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" width="777" src="attachments/295031676/416670011.png" data-image-src="attachments/295031676/416670011.png" data-unresolved-comment-count="0" data-linked-resource-id="416670011" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2020-12-9_15-16-44.png" data-base-url="https://alm.accenture.com/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="295031676" data-linked-resource-container-version="60"></span></p><p>You can also confirm you are ready to move forward by checking for a <strong>Ready status with 1 table added:</strong></p><p><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" width="666" src="attachments/295031676/416670014.png" data-image-src="attachments/295031676/416670014.png" data-unresolved-comment-count="0" data-linked-resource-id="416670014" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2020-12-9_15-25-29.png" data-base-url="https://alm.accenture.com/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="295031676" data-linked-resource-container-version="60"></span></p><p><br/></p></div>
+</div>
+</div>
+<div class="columnLayout single" data-layout="single">
+<div class="cell normal" data-type="normal">
+<div class="innerCell">
+<hr/><p><strong>Next &gt; <a href="295031704.html">AWS Analytics 2 - Step 3: Query with Athena</a></strong></p></div>
+</div>
+</div>
+</div>
+                    </div>
+
+                                                            <div class="pageSection group">
+                        <div class="pageSectionHeader">
+                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
+                        </div>
+
+                        <div class="greybox" align="left">
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031676/295031677.png">Glue-screen.PNG</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031676/295031678.png">image2018-4-19 15:24:31.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031676/295031679.png">image2018-4-19 15:34:41.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031676/295031680.png">image2018-4-24 15:39:16.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031676/295031681.png">image2018-4-24 15:45:23.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031676/295031682.png">image2018-4-24 15:46:35.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031676/295031683.png">image2018-4-24 15:51:6.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031676/295031684.png">image2018-4-24 15:52:56.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031676/295031685.png">image2018-4-24 15:58:37.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031676/295031686.png">image2018-4-24 15:59:6.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031676/295031687.png">image2018-4-24 16:0:33.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031676/295031688.png">image2018-4-24 2:28:57.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031676/295031689.png">image2018-4-24 2:31:7.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031676/295031690.png">image2018-4-24 2:48:1.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031676/295031691.png">image2018-4-24 2:50:2.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031676/295031692.png">image2018-4-24 2:53:43.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031676/295031693.png">image2018-4-24 3:2:58.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031676/295031694.png">image2018-4-24 3:6:59.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031676/295031695.png">image2018-5-9 10:30:38.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031676/295031696.png">image2018-5-9 10:38:54.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031676/295031697.png">image2018-5-9 10:41:39.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031676/295031698.png">image2018-5-9 10:43:28.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031676/295031699.png">image2018-5-9 10:46:26.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031676/295031700.png">image2018-5-9 10:54:16.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031676/295031701.png">image2018-5-9 11:0:55.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031676/295031702.png">image2018-5-9 15:1:16.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031676/295031703.png">image2018-5-9 15:2:5.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031676/295032785.png">img-17.07.2018-03.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031676/295032787.png">img-17.07.2018-04.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031676/295035737.png">img-18.07.2018-01.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031676/295036622.png">image2018-7-18 10:44:25.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031676/295039390.png">image2018-7-18 10_44_25.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031676/295039490.png">HowItWorks-GLUEoverview.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031676/295039492.png">HowItWorks-GLUEoverview.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031676/295260881.png">image2018-7-30 16:58:25.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031676/295260882.png">image2018-7-30 16:59:21.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031676/342644250.png">image2019-8-12_12-47-2.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031676/342644251.png">image2019-8-12_12-50-23.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031676/342644254.png">image2019-8-12_12-53-57.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031676/366443796.png">image2020-2-19_10-9-40.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031676/366443797.png">image2020-2-19_10-10-28.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031676/366443798.png">image2020-2-19_10-11-32.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031676/366443823.png">image2020-2-19_10-29-27.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031676/403204198.png">image2020-10-7_13-46-34.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031676/416669766.png">image2020-12-9_8-47-4.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031676/416670010.png">image2020-12-9_15-16-9.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031676/416670011.png">image2020-12-9_15-16-44.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031676/416670014.png">image2020-12-9_15-25-29.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031676/418667465.png">image2021-1-7_14-3-25.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031676/418669609.png">image2021-1-8_11-36-36.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031676/418669630.png">image2021-1-8_12-29-49.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031676/442173810.png">image2021-5-12_11-39-52.png</a> (image/png)
+                                <br/>
+                                                    </div>
+                    </div>
+                    
+                 
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on May 26, 2021 17:56</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

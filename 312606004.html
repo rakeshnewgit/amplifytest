@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>New IT Delivery Patterns : AWS Analytics 2 - Step 5: Visualize Your Data</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">New IT Delivery Patterns</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="295031660.html">AWS Analytics 2: Marketing Analytics with Quicksight</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            New IT Delivery Patterns : AWS Analytics 2 - Step 5:  Visualize Your Data
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Thomas R. Evans</span>, last modified on Feb 15, 2021
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <div class="contentLayout2">
+<div class="columnLayout single" data-layout="single">
+<div class="cell normal" data-type="normal">
+<div class="innerCell">
+<p class="auto-cursor-target">With your datasource now connected in QuickSight, you are ready to experiment with visualizations.<br/><br/></p><div id="expander-1432628151" class="expand-container"><div id="expander-control-1432628151" class="expand-control"><span class="expand-icon aui-icon aui-icon-small aui-iconfont-chevron-down"></span><span class="expand-control-text">Click here for a reminder of what each data set field conveys</span></div><div id="expander-content-1432628151" class="expand-content"><p><div class="table-wrap"><table class="wrapped confluenceTable"><colgroup><col/><col/></colgroup><tbody><tr><th class="highlight-yellow confluenceTh" colspan="1" data-highlight-colour="yellow">Parameter</th><th class="highlight-yellow confluenceTh" colspan="1" data-highlight-colour="yellow">Describes</th></tr><tr><td class="confluenceTd"><strong>age</strong></td><td colspan="1" class="confluenceTd">person's age</td></tr><tr><td class="confluenceTd"><strong>job</strong></td><td colspan="1" class="confluenceTd">person's job type</td></tr><tr><td colspan="1" class="confluenceTd"><strong>marital</strong></td><td colspan="1" class="confluenceTd">marital status</td></tr><tr><td colspan="1" class="confluenceTd"><p><strong>education</strong></p></td><td colspan="1" class="confluenceTd">highest level of education attained</td></tr><tr><td colspan="1" class="confluenceTd"><p><strong>default</strong> </p></td><td colspan="1" class="confluenceTd"><span style="color: rgb(0,51,102);">[unknown open source data parameter]<br/></span></td></tr><tr><td class="confluenceTd"><p><strong>housing</strong></p></td><td colspan="1" class="confluenceTd">home ownership status</td></tr><tr><td class="confluenceTd"><p><strong>loan</strong></p></td><td colspan="1" class="confluenceTd">does the person currently have a bank loan</td></tr><tr><td class="highlight-yellow confluenceTd" colspan="2" data-highlight-colour="yellow"><strong>Relating to most recent marketing contact ...</strong></td></tr><tr><th class="highlight-yellow confluenceTh" data-highlight-colour="yellow">Parameter</th><th class="highlight-yellow confluenceTh" data-highlight-colour="yellow">Describes</th></tr><tr><td class="confluenceTd"><p><strong>contact</strong></p></td><td colspan="1" class="confluenceTd">phone number type contacted</td></tr><tr><td class="confluenceTd"><p><strong>month</strong></p></td><td colspan="1" class="confluenceTd">month of contact</td></tr><tr><td class="confluenceTd"><p><strong>day_of_week</strong></p></td><td colspan="1" class="confluenceTd">day of week of contact</td></tr><tr><td class="confluenceTd"><p><strong>duration</strong></p></td><td colspan="1" class="confluenceTd">duration (seconds) of contact</td></tr><tr><td class="confluenceTd"><p><strong>campaign</strong></p></td><td colspan="1" class="confluenceTd">marketing campaign identifier</td></tr><tr><td class="confluenceTd"><p><strong>pdays</strong></p></td><td colspan="1" class="confluenceTd">[unknown open source data parameter]</td></tr><tr><td class="confluenceTd"><p><strong>previous</strong></p></td><td colspan="1" class="confluenceTd">number of previous contact attempts</td></tr><tr><td class="confluenceTd"><p><strong>poutcome</strong></p></td><td colspan="1" class="confluenceTd">outcome of most recent attempt</td></tr><tr><td class="confluenceTd"><p><strong>emp_var_rate</strong></p></td><td colspan="1" class="confluenceTd">employment variation rate<br/>(a measure of <a href="https://www.investopedia.com/terms/c/cyclicalunemployment.asp" class="external-link" rel="nofollow">cyclical employment variation</a>)</td></tr><tr><td class="confluenceTd"><p><strong>cons_price_idx</strong></p></td><td colspan="1" class="confluenceTd"><a href="https://www.investopedia.com/terms/c/consumerpriceindex.asp" class="external-link" rel="nofollow">consumer price index</a> value<br/>on most recent contact attempt</td></tr><tr><td class="confluenceTd"><p><strong>cons_conf_idx</strong></p></td><td colspan="1" class="confluenceTd"><a href="https://en.wikipedia.org/wiki/Consumer_confidence_index" class="external-link" rel="nofollow">consumer confidence index</a> value <br/>on most recent contact attempt</td></tr><tr><td class="confluenceTd"><p><strong>euribor3m</strong></p></td><td colspan="1" class="confluenceTd"><a href="http://www.global-rates.com/interest-rates/euribor/euribor-interest-3-months.aspx" class="external-link" rel="nofollow">3 month Euribor rate</a> on most recent<br/>contact attempt</td></tr><tr><td class="confluenceTd"><p><strong>nr_employed</strong></p></td><td colspan="1" class="confluenceTd">is the person an employed non-resident</td></tr><tr><td class="confluenceTd"><p><strong>y</strong></p></td><td colspan="1" class="confluenceTd">a &quot;yes/no&quot; attribute indicating whether the given customer participated in the offer or not. This value is converted to binary (0/1) in the context of machine learning predictive model training.</td></tr></tbody></table></div></p></div></div><hr/><h3 id="AWSAnalytics2Step5:VisualizeYourData-Visualizeyourdata:Demographic–educationlevel">Visualize your data: Demographic – education level</h3><p>The example below will result in a bar chart intending to show the Yes/No responses across an education level distribution.</p><h4 id="AWSAnalytics2Step5:VisualizeYourData-ChooseyourVisualtype">Choose your Visual type</h4><p>(Visual types are organized below the field list.)</p><ul><li>Select the Vertical stacked bar chart <span class="inline-comment-marker" data-ref="d423eafb-7390-447a-aee4-5a597041058b">visual type</span>,<br/><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" width="333" src="attachments/312606004/312606010.png" data-image-src="attachments/312606004/312606010.png" data-unresolved-comment-count="0" data-linked-resource-id="312606010" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2019-1-18_15-39-41.png" data-base-url="https://alm.accenture.com/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="312606004" data-linked-resource-container-version="30"></span></li></ul><h4 id="AWSAnalytics2Step5:VisualizeYourData-Populateyourfieldwells">Populate your field wells</h4><p><strong>Note</strong>: If you can’t see the <strong>Field wells</strong> parameters, click on the side double arrows to expand the interface.<br/><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" width="332" src="attachments/312606004/424699542.png" data-image-src="attachments/312606004/424699542.png" data-unresolved-comment-count="0" data-linked-resource-id="424699542" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2021-2-15_12-54-3.png" data-base-url="https://alm.accenture.com/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="312606004" data-linked-resource-container-version="30"></span><br/><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" width="333" src="attachments/312606004/424699539.png" data-image-src="attachments/312606004/424699539.png" data-unresolved-comment-count="0" data-linked-resource-id="424699539" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2021-2-15_12-53-27.png" data-base-url="https://alm.accenture.com/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="312606004" data-linked-resource-container-version="30"></span></p><p><br/></p><p><strong>Note</strong>: among the data attributes<br/><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image confluence-thumbnail" width="144" src="attachments/312606004/314478917.png" data-image-src="attachments/312606004/314478917.png" data-unresolved-comment-count="0" data-linked-resource-id="314478917" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2019-1-22_14-59-36.png" data-base-url="https://alm.accenture.com/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="312606004" data-linked-resource-container-version="30"></span><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" width="500" src="attachments/312606004/316930566.png" data-image-src="attachments/312606004/316930566.png" data-unresolved-comment-count="0" data-linked-resource-id="316930566" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2019-2-11_10-10-52.png" data-base-url="https://alm.accenture.com/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="312606004" data-linked-resource-container-version="30"></span></p><p>(<span class="inline-comment-marker" data-ref="6b470655-f112-4a77-8409-5050be58c2e6">You can either drag the field name from the field list and drop it on the target well, or select it from the field well's drop-down</span>.)</p><ul><li><p>Add <strong>y </strong>from the field list to the <strong>x axis </strong>field well.</p></li><li>Add <strong>education </strong>from the field list to the <strong>Group/Color </strong>field well.</li><li>(Leave the Value field well blank for now)</li></ul><h4 id="AWSAnalytics2Step5:VisualizeYourData-Result">Result</h4><p><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" width="444" src="attachments/312606004/314478870.png" data-image-src="attachments/312606004/314478870.png" data-unresolved-comment-count="0" data-linked-resource-id="314478870" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2019-1-22_14-2-32.png" data-base-url="https://alm.accenture.com/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="312606004" data-linked-resource-container-version="30"></span></p><p>If you mouse over each layer in the stacks, you'll see it reporting raw numbers of responses, and that's not very useful. Also, the much greater number of 'no' customers over 'yes' customers makes it difficult to tell if there is an education-level pattern in the data...</p><p>Quicksight offers an easy way to adjust for that.</p><h4 id="AWSAnalytics2Step5:VisualizeYourData-Changethevisualtypeto100%barchart">Change the visual type to 100% bar chart</h4><ul><li>Select the Vertical stacked 100% bar chart visual type,<strong><br/><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" width="333" src="attachments/312606004/314478876.png" data-image-src="attachments/312606004/314478876.png" data-unresolved-comment-count="0" data-linked-resource-id="314478876" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2019-1-22_14-17-14.png" data-base-url="https://alm.accenture.com/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="312606004" data-linked-resource-container-version="30"></span><br/></strong></li></ul><p>Upon selection of the alternate visual type, QuickSight will redraw automatically.</p><h4 id="AWSAnalytics2Step5:VisualizeYourData-Result.1">Result</h4><p><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" width="444" src="attachments/312606004/314478875.png" data-image-src="attachments/312606004/314478875.png" data-unresolved-comment-count="0" data-linked-resource-id="314478875" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2019-1-22_14-14-20.png" data-base-url="https://alm.accenture.com/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="312606004" data-linked-resource-container-version="30"></span><br/>This is better. Now when you mouse-over each education level in the responses, you see that education level's percentage representation for the particular response.</p><p>The education demographic looks pretty evenly distributed. There may be a pattern here, but certainly nothing dramatic.</p><h4 id="AWSAnalytics2Step5:VisualizeYourData-Considerotherdemographics">Consider other demographics</h4><p>Note: the field wells interface feature may minimize depending on various actions you take in QuickSight. To access it, simply toggle its expand collapse feature.<br/><br/><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image confluence-thumbnail" width="300" src="attachments/312606004/314478900.png" data-image-src="attachments/312606004/314478900.png" data-unresolved-comment-count="0" data-linked-resource-id="314478900" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2019-1-22_14-51-54.png" data-base-url="https://alm.accenture.com/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="312606004" data-linked-resource-container-version="30"></span><br/>(The same applies to any other feature in the visualization UI.)<br/><br/></p><p>QuickSight makes it very easy to experiment. You can try one or more of the following and see the results immediately. For example, you could</p><ul><li>Change to <strong>job (or any other available grouping)</strong> from education<br/><br/><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" width="333" src="attachments/312606004/314478896.png" data-image-src="attachments/312606004/314478896.png" data-unresolved-comment-count="0" data-linked-resource-id="314478896" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2019-1-22_14-46-26.png" data-base-url="https://alm.accenture.com/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="312606004" data-linked-resource-container-version="30"></span></li><li>Or instead add <strong>job <strong>(or any other available grouping)</strong></strong> as a drill down layer<br/><br/></li></ul><h3 id="AWSAnalytics2Step5:VisualizeYourData-Visualizeyourdata:Value–consumerconfidenceindex">Visualize your data: Value – consumer confidence index</h3><p>If demographic views don't shed a lot of light on our data, perhaps some of the environmental variables we have access to will.</p><p>The example below will result in a Heat Map intending to show – per advertising campaign – the number of successful contact attempts relative to the consumer confidence index value.</p><h4 id="AWSAnalytics2Step5:VisualizeYourData-Optional:Addanothervisual">Optional: Add another visual</h4><ul><li>If you want to retain the visualization you've been working on in this analysis, choose Add visual before proceeding<br/><br/><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image confluence-thumbnail" width="300" src="attachments/312606004/314478941.png" data-image-src="attachments/312606004/314478941.png" data-unresolved-comment-count="0" data-linked-resource-id="314478941" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2019-1-22_15-8-40.png" data-base-url="https://alm.accenture.com/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="312606004" data-linked-resource-container-version="30"></span></li></ul><h4 id="AWSAnalytics2Step5:VisualizeYourData-ChooseyourVisualtype.">Choose your Visual type.</h4><p>(Visual types are organized below the field list.)</p><ul><li><p>Select the <strong>Heat Map</strong> visual type.</p><p><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" height="250" src="attachments/312606004/312606019.png" data-image-src="attachments/312606004/312606019.png" data-unresolved-comment-count="0" data-linked-resource-id="312606019" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2018-8-2 10:56:4.png" data-base-url="https://alm.accenture.com/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="312606004" data-linked-resource-container-version="30"></span></p></li></ul><h4 id="AWSAnalytics2Step5:VisualizeYourData-Populateyourfieldwells.">Populate your field wells.</h4><p>(You can either drag the field name from the field list and drop it on the target well, or select it from the field well's drop-down.)</p><ul><li><p>Add <strong>campaign</strong> from the field list to the <strong>Rows</strong> field well.</p></li><li>Add <strong>cons_conf_idx</strong> from the field list to the <strong>Columns</strong> field well.</li><li>Add <strong>poutcome</strong> from the field list to the <strong>Values</strong> field well.</li></ul><p><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" height="150" src="attachments/312606004/312606018.png" data-image-src="attachments/312606004/312606018.png" data-unresolved-comment-count="0" data-linked-resource-id="312606018" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2018-8-2 13:20:23.png" data-base-url="https://alm.accenture.com/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="312606004" data-linked-resource-container-version="30"></span></p><p><strong>Filter out non-successful outcomes.</strong></p><ul><li>Click to select the filter function, then click to create a filter.<br/><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" width="333" src="attachments/312606004/312606017.png" data-image-src="attachments/312606004/312606017.png" data-unresolved-comment-count="0" data-linked-resource-id="312606017" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2018-8-2 13:22:49.png" data-base-url="https://alm.accenture.com/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="312606004" data-linked-resource-container-version="30"></span></li><li>Select <strong>poutcome</strong> as the filtered field.</li><li>Click on <strong>Include All</strong> modify the values to be reflected, then tick the <strong>success</strong> check box.<br/><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" width="255" src="attachments/312606004/312606016.png" data-image-src="attachments/312606004/312606016.png" data-unresolved-comment-count="0" data-linked-resource-id="312606016" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2018-8-2 13:24:33.png" data-base-url="https://alm.accenture.com/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="312606004" data-linked-resource-container-version="30"></span></li><li>Click Apply to apply the filter (at the very bottom of the filter panel).<br/><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image confluence-thumbnail" width="266" src="attachments/312606004/312606015.png" data-image-src="attachments/312606004/312606015.png" data-unresolved-comment-count="0" data-linked-resource-id="312606015" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2018-8-2 13:25:35.png" data-base-url="https://alm.accenture.com/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="312606004" data-linked-resource-container-version="30"></span></li></ul><p><br/><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" width="555" src="attachments/312606004/312606013.png" data-image-src="attachments/312606004/312606013.png" data-unresolved-comment-count="0" data-linked-resource-id="312606013" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2018-8-2 13:32:43.png" data-base-url="https://alm.accenture.com/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="312606004" data-linked-resource-container-version="30"></span></p><hr/><h3 id="AWSAnalytics2Step5:VisualizeYourData-Takeafewminutestoexploreotherfiltersandvisualtypes!">Take a few minutes to explore other filters and visual types!</h3><p>To explore QuickSight Visuals more fully, refer to <a href="https://docs.aws.amazon.com/quicksight/latest/user/working-with-visuals.html" class="external-link" rel="nofollow">Working with Amazon QuickSight Visuals</a>.</p><p>When returning to QuickSight, you can find this and any other Analyses you have saved at the <a href="https://us-east-1.quicksight.aws.amazon.com/sn/start" class="external-link" rel="nofollow">QuickSight start page</a>.<br/><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" width="555" src="attachments/312606004/312606012.png" data-image-src="attachments/312606004/312606012.png" data-unresolved-comment-count="0" data-linked-resource-id="312606012" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2018-8-2 13:35:49.png" data-base-url="https://alm.accenture.com/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="312606004" data-linked-resource-container-version="30"></span></p><h3 id="AWSAnalytics2Step5:VisualizeYourData-Conclusion">Conclusion</h3><p>This dataset may not lend itself well to strong conclusions based on adhoc analyses. In <a href="https://alm.accenture.com/wiki/display/CDP/AWS+Machine+Learning+1%3A+Targeted+Marketing">AWS Machine Learning 1: Targeted Marketing</a> you'll have the chance to bring the power of Machine Learning to bear on the same data!</p><p>But first, follow the simple clean-up steps linked below.</p><p><img class="wysiwyg-unknown-macro" src="../plugins/servlet/confluence/placeholder/unknown-macro"/></p></div>
+</div>
+</div>
+<div class="columnLayout single" data-layout="single">
+<div class="cell normal" data-type="normal">
+<div class="innerCell">
+<hr/><p><strong>Next &gt; <a href="295031736.html">AWS Analytics 2: Cleanup</a></strong></p></div>
+</div>
+</div>
+</div>
+                    </div>
+
+                                                            <div class="pageSection group">
+                        <div class="pageSectionHeader">
+                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
+                        </div>
+
+                        <div class="greybox" align="left">
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/312606004/312606005.png">image2019-1-18_16-5-3.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/312606004/312606006.png">image2019-1-18_16-4-8.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/312606004/312606007.png">image2019-1-18_16-2-36.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/312606004/312606008.png">image2019-1-18_16-0-43.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/312606004/312606009.png">image2019-1-18_15-58-0.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/312606004/312606010.png">image2019-1-18_15-39-41.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/312606004/312606011.png">image2019-1-18_15-36-54.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/312606004/312606012.png">image2018-8-2 13:35:49.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/312606004/312606013.png">image2018-8-2 13:32:43.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/312606004/312606014.png">image2018-8-2 13:27:0.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/312606004/312606015.png">image2018-8-2 13:25:35.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/312606004/312606016.png">image2018-8-2 13:24:33.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/312606004/312606017.png">image2018-8-2 13:22:49.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/312606004/312606018.png">image2018-8-2 13:20:23.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/312606004/312606019.png">image2018-8-2 10:56:4.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/312606004/312606020.png">image2018-8-1 18:9:28.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/312606004/312606021.png">image2018-8-1 18:7:57.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/312606004/312606022.png">image2018-8-1 18:3:44.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/312606004/312606023.png">image2018-8-1 17:54:34.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/312606004/312606024.png">image2018-8-1 17:52:43.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/312606004/312606025.png">image2018-7-31 9:12:14.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/312606004/312606026.png">img-18.07.2018-06.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/312606004/312606027.png">img-18.07.2018-05.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/312606004/312606028.png">img-18.07.2018-04.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/312606004/312606029.png">img-18.07.2018-03.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/312606004/312606030.png">image2018-5-11 13:52:5.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/312606004/312606031.png">image2018-5-11 13:51:6.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/312606004/312606032.png">image2018-5-11 13:3:35.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/312606004/312606033.png">image2018-5-11 13:35:51.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/312606004/312606034.png">image2018-5-11 13:28:31.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/312606004/312606035.png">image2018-5-11 13:15:1.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/312606004/312606036.png">image2018-5-11 13:12:46.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/312606004/312606037.png">image2018-5-11 13:10:35.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/312606004/312606038.png">image2018-5-11 13:0:59.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/312606004/312606039.png">2.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/312606004/312606040.png">1.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/312606004/312606043.png">image2019-1-18_16-59-28.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/312606004/312606049.png">image2019-1-18_17-2-1.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/312606004/314478870.png">image2019-1-22_14-2-32.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/312606004/314478875.png">image2019-1-22_14-14-20.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/312606004/314478876.png">image2019-1-22_14-17-14.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/312606004/314478895.png">image2019-1-22_14-45-41.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/312606004/314478896.png">image2019-1-22_14-46-26.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/312606004/314478900.png">image2019-1-22_14-51-54.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/312606004/314478911.png">image2019-1-22_14-54-16.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/312606004/314478917.png">image2019-1-22_14-59-36.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/312606004/314478937.png">image2019-1-22_15-7-52.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/312606004/314478941.png">image2019-1-22_15-8-40.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/312606004/316930562.png">image2019-2-11_10-8-14.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/312606004/316930563.png">image2019-2-11_10-9-1.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/312606004/316930564.png">image2019-2-11_10-10-15.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/312606004/316930566.png">image2019-2-11_10-10-52.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/312606004/333090986.png">img-08052018-06.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/312606004/424699539.png">image2021-2-15_12-53-27.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/312606004/424699542.png">image2021-2-15_12-54-3.png</a> (image/png)
+                                <br/>
+                                                    </div>
+                    </div>
+                    
+                 
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on May 26, 2021 17:56</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

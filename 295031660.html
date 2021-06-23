@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>New IT Delivery Patterns : AWS Analytics 2: Marketing Analytics with Quicksight</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">New IT Delivery Patterns</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            New IT Delivery Patterns : AWS Analytics 2: Marketing Analytics with Quicksight
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Karina Jonane</span>, last modified by <span class='editor'> Thomas R. Evans</span> on Apr 30, 2021
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <div class="contentLayout2">
+<div class="columnLayout single" data-layout="single">
+<div class="cell normal" data-type="normal">
+<div class="innerCell">
+<p>This Data-driven, cloud-powered asset gives Consulting resources the tools to load client data onto Amazon Web Services (AWS) in a secure S3 storage space, and then leverage a set of analytical and visualization tools to automatically format and analyze the data in real-time, on the fly.  This toolkit can be augmented with a variety of plug-and-play services available on AWS, either AWS created (QuickSight, etc.) or third party (Hadoop, Splunk, etc.).  These tools can make engaging clients in discussion of their analytics needs easier and can also open up broader discussions on cloud capabilities and cloud architectures.</p></div>
+</div>
+</div>
+<div class="columnLayout single" data-layout="single">
+<div class="cell normal" data-type="normal">
+<div class="innerCell">
+<hr/><h2 id="AWSAnalytics2:MarketingAnalyticswithQuicksight-UnifiedViewofDataAcrossMultipleDataStores">Unified View of Data Across Multiple Data Stores</h2><p><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" width="666" src="attachments/295031660/295260858.png" data-image-src="attachments/295031660/295260858.png" data-unresolved-comment-count="0" data-linked-resource-id="295260858" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2018-7-30 16:19:6.png" data-base-url="https://alm.accenture.com/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="295031660" data-linked-resource-container-version="32"></span></p><p><strong><em><sup><sub><span style="color: rgb(68,68,68);">© Amazon Web Services, Inc. </span></sub></sup></em></strong></p><h2 id="AWSAnalytics2:MarketingAnalyticswithQuicksight-AWSArchitecture:QueriesAgainstanAmazonS3DataLake">AWS Architecture: Queries Against an Amazon S3 Data Lake</h2><p><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" width="700" src="attachments/295031660/295035607.png" data-image-src="attachments/295031660/295035607.png" data-unresolved-comment-count="0" data-linked-resource-id="295035607" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="Analytics_2_flow.png" data-base-url="https://alm.accenture.com/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="295031660" data-linked-resource-container-version="32"></span></p><p><strong>This exercise highlights that a streamlined flow (illustrated end-to-end below with check marks) through the following Amazon services can render powerful Business Intelligence:</strong></p><p><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" width="700" src="attachments/295031660/295254097.png" data-image-src="attachments/295031660/295254097.png" data-unresolved-comment-count="0" data-linked-resource-id="295254097" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2018-7-26 16:53:43.png" data-base-url="https://alm.accenture.com/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="295031660" data-linked-resource-container-version="32"></span></p><p>You will be utilizing the following Amazon Web Services:</p><ul><li><strong>Amazon S3</strong> - <strong>S</strong>imple <strong>S</strong>torage <strong>S</strong>ervice, here serving as an intermediate data storage container. <strong><a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/Welcome.html" class="external-link" rel="nofollow">More...</a></strong></li><li><strong>AWS Glue</strong> - <span style="color: rgb(68,68,68);">a fully managed service that makes it simple to categorize, clean, enrich, and move data reliably between data stores. <strong><a href="https://docs.aws.amazon.com/glue/latest/dg/what-is-glue.html" class="external-link" rel="nofollow">More...</a></strong></span></li><li><strong>AWS Glue Data Catalog</strong> - <span style="color: rgb(68,68,68);">is an index to the location, schema, and runtime metrics of your data. The information there is used to create and monitor your ETL jobs</span><span style="color: rgb(68,68,68);">. <strong><a href="https://docs.aws.amazon.com/glue/latest/dg/populate-data-catalog.html" class="external-link" rel="nofollow">More...</a></strong></span></li><li><strong>AWS Glue Crawlers</strong> - as the method by which to p<span style="color: rgb(68,68,68);">opulate <span style="color: rgb(68,68,68);">the AWS Glue Data Catalog with tables. <strong><a href="https://docs.aws.amazon.com/glue/latest/dg/add-crawler.html" class="external-link" rel="nofollow">More...</a></strong></span></span></li><li><strong><span style="color: rgb(68,68,68);">AWS Athena</span></strong><span style="color: rgb(68,68,68);"> - a serverless <span>interactive query service that makes it easy to analyze data in S3 using standard SQL. <strong><a href="https://aws.amazon.com/athena/" class="external-link" rel="nofollow">More...</a></strong></span></span></li><li><span style="color: rgb(68,68,68);"><span><strong>AWS QuickSight</strong> - a fast, easy-to-use <span style="color: rgb(84,84,84);">business analytics service that makes it easy to visualize and extract business insights from data. <strong><a href="https://aws.amazon.com/quicksight/" class="external-link" rel="nofollow">More...</a></strong></span></span></span></li></ul><p><span style="color: rgb(68,68,68);"><span><span style="color: rgb(84,84,84);"><br/></span></span></span></p></div>
+</div>
+</div>
+<div class="columnLayout single" data-layout="single">
+<div class="cell normal" data-type="normal">
+<div class="innerCell">
+<hr/><p><strong>Next &gt; <a href="295031662.html">AWS Analytics 2 - Step 1: Review S3 Data</a></strong></p></div>
+</div>
+</div>
+</div>
+                    </div>
+
+                                                            <div class="pageSection group">
+                        <div class="pageSectionHeader">
+                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
+                        </div>
+
+                        <div class="greybox" align="left">
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031660/295031661.png">image2018-3-9 19_3_43.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031660/295035607.png">Analytics_2_flow.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031660/295254073.png">image2018-7-26 16:16:2.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031660/295254082.png">image2018-7-26 16:27:37.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031660/295254097.png">image2018-7-26 16:53:43.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031660/295260858.png">image2018-7-30 16:19:6.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031660/295260864.png">image2018-7-30 16:25:15.png</a> (image/png)
+                                <br/>
+                                                    </div>
+                    </div>
+                    
+                 
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on May 26, 2021 17:56</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

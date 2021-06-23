@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>New IT Delivery Patterns : AWS Analytics 2 - Step 3: Query with Athena</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">New IT Delivery Patterns</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="295031660.html">AWS Analytics 2: Marketing Analytics with Quicksight</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            New IT Delivery Patterns : AWS Analytics 2 - Step 3: Query with Athena
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Karina Jonane</span>, last modified by <span class='editor'> Thomas R. Evans</span> on Jan 08, 2021
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <div class="contentLayout2">
+<div class="columnLayout single" data-layout="single">
+<div class="cell normal" data-type="normal">
+<div class="innerCell">
+<p>In this step, you will use Amazon Athena to explore your data prior to visualization with several SQL commands. Amazon Athena is a serverless query services that makes it easy to analyze data in Amazon S3 using SQL. Because Athena is serverless, you don't manage any underlying infrastructure and users only pay for the queries that they run. Learn more about <a href="https://aws.amazon.com/athena/" class="external-link" rel="nofollow">AWS Athena at Amazon</a>.</p><p><strong>Note:</strong> the SQL commands below are suitable in the context of the test data file. Some of them may not be relevant in the context of other data, In any event, you may want to briefly <a href="https://www.w3schools.com/sql/default.asp" class="external-link" rel="nofollow">explore this SQL tutorial</a>.</p></div>
+</div>
+</div>
+<div class="columnLayout single" data-layout="single">
+<div class="cell normal" data-type="normal">
+<div class="innerCell">
+<hr/><h3 id="AWSAnalytics2Step3:QuerywithAthena-Noteyourdatabasename">Note your database name</h3><p>You will need to select it in the next step after navigating to the Athena service.</p><ul><li>Click on databases in the Glue navigation area<br/><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" height="250" src="attachments/295031704/403204223.png" data-image-src="attachments/295031704/403204223.png" data-unresolved-comment-count="0" data-linked-resource-id="403204223" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2020-10-7_14-17-3.png" data-base-url="https://alm.accenture.com/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="295031704" data-linked-resource-container-version="27"></span></li></ul><h3 id="AWSAnalytics2Step3:QuerywithAthena-NavigatetotheAthenaservice">Navigate to the Athena service</h3><ol><li>Click to open the AWS Services menu</li><li>Type 'Athena' into the search field</li><li><strong>Right-click and choose to open in a new browser tab (</strong>to allow your Glue console tab to persist)<br/><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" width="555" src="attachments/295031704/403204232.png" data-image-src="attachments/295031704/403204232.png" data-unresolved-comment-count="0" data-linked-resource-id="403204232" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2020-10-7_14-23-28.png" data-base-url="https://alm.accenture.com/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="295031704" data-linked-resource-container-version="27"></span><br/>This will open a new browser tab to the <strong style="letter-spacing: 0.0px;"><span class="inline-comment-marker" data-ref="542e8a10-7663-4af0-a51b-a88493efdf79">AWS Athena</span></strong><span class="inline-comment-marker" data-ref="542e8a10-7663-4af0-a51b-a88493efdf79"> console in the</span><span style="letter-spacing: 0.0px;"> </span><strong style="letter-spacing: 0.0px;">Query Editor</strong><span style="letter-spacing: 0.0px;"> view.<br/><br/></span></li><li>Click the databases drop-down and select your database name<br/><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" height="250" src="attachments/295031704/403204234.png" data-image-src="attachments/295031704/403204234.png" data-unresolved-comment-count="0" data-linked-resource-id="403204234" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2020-10-7_14-26-48.png" data-base-url="https://alm.accenture.com/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="295031704" data-linked-resource-container-version="27"></span><br/>Doing so will allow you to view the table details as well as easily enter the table name or fields into the query editor in the step below.<br/><br/></li><li><strong>Click on the vertical ellipsis</strong> to the right of the product_marketing_data table name, then select <strong>Preview table</strong>.<br/><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" width="555" src="attachments/295031704/416670054.png" data-image-src="attachments/295031704/416670054.png" data-unresolved-comment-count="0" data-linked-resource-id="416670054" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2020-12-9_16-19-8.png" data-base-url="https://alm.accenture.com/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="295031704" data-linked-resource-container-version="27"></span><br/><br/></li></ol><hr/><h3 id="AWSAnalytics2Step3:QuerywithAthena-ExploretheAthenaDashboardandtheQueryEditor">Explore the Athena Dashboard and the Query Editor</h3><p> Athena's main dashboard view defaults to its <strong>Query Editor</strong>. See below for a quick overview.</p><p><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" width="600" src="attachments/295031704/295035816.png" data-image-src="attachments/295031704/295035816.png" data-unresolved-comment-count="0" data-linked-resource-id="295035816" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="img-18.07.2018-02.png" data-base-url="https://alm.accenture.com/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="295031704" data-linked-resource-container-version="27"></span></p><ol><li><strong>Database</strong>: Confirm that your database name is selected</li><li><strong>Tables</strong>: Double-click on table or field name to insert it into the editor (3)</li><li><strong>Query</strong>: Enter your preview queries here. Copy and paste from the examples below. or build your own.</li><li><strong>Results</strong>: View your query results here</li><li><strong>Download</strong>: Download a query result to your local workstation</li><li><strong>History</strong>: This tab shows your query history. Click an entry to re-run it. Download of results is available as well.</li></ol><p><strong>SQL syntax:</strong></p><p>A SQL select statement is comprised of multiple clauses.</p><p><span><strong>SELECT</strong> column(s)</span><br/><span><strong>FROM</strong> table / view</span><br/><span><strong>WHERE</strong> condition / expression</span><br/><span><strong>GROUP BY</strong> column(s)</span><br/><span><strong>ORDER BY</strong> column(s)</span><br/><span><strong>HAVING</strong> aggregate function and condition / expression<br/><br/></span>(The <strong>LIMIT</strong> clause present in the default data preview query sets a maximum number of rows for the result set. It is not supported by all SQL engines, but is supported in <a href="https://aws.amazon.com/athena/faqs/#formats" class="external-link" rel="nofollow">Presto, the in-memory, distributed SQL engine that Athena uses</a>.)</p><p><strong>The sample queries below are very basic. Feel free to explore in more depth as your experience or interest allow.</strong></p><div><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" width="500" src="attachments/295031704/295033147.png" data-image-src="attachments/295031704/295033147.png" data-unresolved-comment-count="0" data-linked-resource-id="295033147" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="img-17.07.2018-08.png" data-base-url="https://alm.accenture.com/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="295031704" data-linked-resource-container-version="27"></span></div><div><img class="emoticon emoticon-tick" src="images/icons/emoticons/check.svg" data-emoticon-name="tick" alt="(tick)"/>  You can also highlight the query you want to run and click the Run query button to run it.</div><p><strong>Run several of the sample queries, or try your own.</strong></p><div class="confluence-information-macro confluence-information-macro-information"><p class="title">A note about database_name</p><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>You may notice that while the data preview query that was pre-populated and run as you came into the Athena service includes <em>database_name.table_name</em>, the queries below exclude <em>database_name. </em>Because its inclusion is not required in the <a href="https://aws.amazon.com/athena/faqs/#formats" class="external-link" rel="nofollow">SQL engine that Athena uses</a>, and because the table name <strong><em>product_marketing_data</em></strong><span style="color: rgb(0,0,0);"> is the same for everyone going through this exercise, it is excluded from the queries below to make copying and pasting into the query editor as easy as possible.</span></p></div></div><div class="table-wrap"><table class="wrapped confluenceTable"><colgroup><col/><col/></colgroup><tbody><tr><th class="highlight-blue confluenceTh" colspan="1" data-highlight-colour="blue">Copy/Paste into the query editor:</th><th class="highlight-blue confluenceTh" colspan="1" data-highlight-colour="blue">Expected Preview Result</th></tr><tr><td colspan="1" class="confluenceTd"><code>SELECT * FROM &quot;product_marketing_data&quot; limit 1000;</code></td><td colspan="1" class="confluenceTd">All records in the table. (You could also exclude the limit clause and return all 41,000 records. <br/>The query will not take long to execute, but displaying +41,000 records in the preview will required a lot of scrolling.</td></tr><tr><td colspan="1" class="confluenceTd"><code>SELECT * FROM &quot;product_marketing_data&quot; limit 5;</code></td><td colspan="1" class="confluenceTd">The first 5 records in the table</td></tr><tr><td class="confluenceTd"><code>SELECT age, education FROM &quot;product_marketing_data&quot;;</code></td><td colspan="1" class="confluenceTd">The age and education column data from every record in the table</td></tr><tr><td colspan="1" class="confluenceTd">SELECT * FROM &quot;product_marketing_data&quot; WHERE contact LIKE 'telephone';</td><td colspan="1" class="confluenceTd"><span>A sort of all records where the contact column value is &quot;telephone&quot;</span></td></tr><tr><td colspan="1" class="confluenceTd">SELECT day_of_week, duration FROM &quot;product_marketing_data&quot; ORDER BY duration;</td><td colspan="1" class="confluenceTd">The day_of_week and<span> </span>duration<span> column data of every record in the table sorted ascending by duration value</span></td></tr><tr><td colspan="1" class="confluenceTd">SELECT MAX(cons_price_idx) FROM &quot;product_marketing_data&quot;;</td><td colspan="1" class="confluenceTd">The <a href="https://en.wikipedia.org/wiki/Consumer_price_index" class="external-link" rel="nofollow">CPI</a> data from the record in the table with the greatest<em> CPI </em><span class="inline-comment-marker" data-ref="81eaaa0d-ea27-4fcf-9b4c-2e9c8c6e6cea">value</span></td></tr><tr><td colspan="1" class="confluenceTd">SELECT AVG(cons_price_idx) FROM &quot;product_marketing_data&quot;;</td><td colspan="1" class="confluenceTd">The average<span class="inline-comment-marker" data-ref="f76f0c3c-431a-40c2-be1c-9ca163a82202"> of consumer price index value of all records in the table</span></td></tr><tr><td colspan="1" class="confluenceTd">SELECT * FROM &quot;product_marketing_data&quot; WHERE poutcome IN ('nonexistent', 'failure');</td><td colspan="1" class="confluenceTd"><span>The records in the table that have the specific outcome values</span></td></tr><tr><td colspan="1" class="confluenceTd"><code><span>SELECT * FROM &quot;<span>product_marketing_data&quot;</span></span><span> WHERE age BETWEEN 10 AND 20;</span></code></td><td colspan="1" class="confluenceTd"><span>Sorted records with age values between the precise values</span></td></tr></tbody></table></div></div>
+</div>
+</div>
+<div class="columnLayout single" data-layout="single">
+<div class="cell normal" data-type="normal">
+<div class="innerCell">
+<hr/><p><strong>Next &gt; <a href="295031724.html">AWS Analytics 2: Create Datasource in QuickSight</a></strong></p></div>
+</div>
+</div>
+</div>
+                    </div>
+
+                                                            <div class="pageSection group">
+                        <div class="pageSectionHeader">
+                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
+                        </div>
+
+                        <div class="greybox" align="left">
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031704/295031705.png">image2018-4-24 16:42:18.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031704/295031706.png">image2018-4-24 16:44:29.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031704/295031707.png">image2018-4-24 16:47:45.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031704/295031708.png">image2018-4-24 16:50:0.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031704/295031709.png">image2018-5-11 11:57:39.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031704/295031710.png">image2018-5-11 12:14:11.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031704/295031711.png">image2018-5-11 12:15:59.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031704/295031712.png">image2018-5-11 17:45:55.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031704/295031713.png">image2018-5-11 17:46:44.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031704/295031714.png">image2018-5-11 17:50:7.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031704/295031715.png">image2018-5-11 17:51:54.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031704/295031716.png">image2018-5-11 17:53:10.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031704/295031717.png">image2018-5-11 17:56:29.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031704/295031718.png">image2018-5-9 15:21:17.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031704/295031719.png">image2018-5-9 15:9:31.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031704/295031720.png">image2018-5-9 23:12:31.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031704/295031721.png">image2018-5-9 23:20:23.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031704/295031722.png">image2018-5-9 23:23:25.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031704/295031723.png">image2018-5-9 23:40:22.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031704/295032818.png">img-17.07.2018-05.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031704/295032835.png">img-17.07.2018-06.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031704/295032840.png">img-17.07.2018-07.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031704/295033147.png">img-17.07.2018-08.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031704/295035816.png">img-18.07.2018-02.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031704/342644271.png">image2019-8-12_13-10-1.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031704/403204204.png">image2020-10-7_14-4-55.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031704/403204207.png">image2020-10-7_14-10-25.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031704/403204219.png">image2020-10-7_14-16-32.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031704/403204223.png">image2020-10-7_14-17-3.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031704/403204231.png">image2020-10-7_14-22-50.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031704/403204232.png">image2020-10-7_14-23-28.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031704/403204234.png">image2020-10-7_14-26-48.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031704/416670053.png">image2020-12-9_16-17-37.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031704/416670054.png">image2020-12-9_16-19-8.png</a> (image/png)
+                                <br/>
+                                                    </div>
+                    </div>
+                    
+                 
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on May 26, 2021 17:56</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

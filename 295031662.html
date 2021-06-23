@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>New IT Delivery Patterns : AWS Analytics 2 - Step 1: Review S3 Data</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">New IT Delivery Patterns</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="295031660.html">AWS Analytics 2: Marketing Analytics with Quicksight</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            New IT Delivery Patterns : AWS Analytics 2 - Step 1: Review S3 Data
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Karina Jonane</span>, last modified by <span class='editor'> Thomas R. Evans</span> on Apr 14, 2021
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <div class="contentLayout2">
+<div class="columnLayout single" data-layout="single">
+<div class="cell normal" data-type="normal">
+<div class="innerCell">
+<p><br/></p><p><strong style="letter-spacing: 0.0px;">What is S3?</strong>  Amazon S3 is AWS' Simple Storage Service that is built to store and retrieve any amount of data with virtually unlimited scalability.  S3 is used to store data for leading companies in virtually every industry including examples like Netflix.</p><p><a href="https://aws.amazon.com/s3/" class="external-link" rel="nofollow">Learn more about Amazon's S3</a>.</p><div class="confluence-information-macro confluence-information-macro-information"><p class="title">Getting familiar with S3</p><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>While this step does not actually involve loading data for the ad hoc analysis covered in this exercise – you will be using data already in S3 – you should follow the steps below as a way to become familiar with standard S3 bucket organization. Getting familiar with S3 now will make it easy to run through other exercises in this space, including ones that involve analysis of data you load into S3 yourself to leverage Glue and Athena, as well as Amazon Machine Learning.</p></div></div></div>
+</div>
+</div>
+<div class="columnLayout single" data-layout="single">
+<div class="cell normal" data-type="normal">
+<div class="innerCell">
+<hr/><h3 id="AWSAnalytics2Step1:ReviewS3Data-AWSConsoleLogin">AWS Console Login</h3><p><h2 id="AWSAnalytics2Step1:ReviewS3Data-TODAY&#39;SCNMRAWSACCOUNTASSIGNMENTS"><strong>TODAY'S CNMR AWS ACCOUNT ASSIGNMENTS</strong></h2><div class="table-wrap"><table class="wrapped confluenceTable"><colgroup><col/><col/><col/></colgroup><tbody><tr><th class="highlight-blue confluenceTh" title="Background colour : Blue" data-highlight-colour="blue"><a href="https://myapps.microsoft.com/signin/113614_388546992390_ACP_AWS_APP/b72d6346-a064-4e92-90d4-f61ec26d3e63?tenantId=e0793d39-0939-496d-b129-198edd916feb" class="external-link" rel="nofollow">cmt-cloud-native-001</a></th><th class="highlight-blue confluenceTh" title="Background colour : Blue" data-highlight-colour="blue"><a href="https://myapps.microsoft.com/signin/113614_091125363666_ACP_AWS_APP/51c54184-82af-4e92-81c1-799b32dd49f6?tenantId=e0793d39-0939-496d-b129-198edd916feb" class="external-link" rel="nofollow">cmt-cloud-native-002</a></th><th class="highlight-blue confluenceTh" title="Background colour : Blue" data-highlight-colour="blue"><a href="https://federation-sts.accenture.com/adfs/ls/idpinitiatedsignon.aspx?loginToRp=urn:amazon:webservices" class="external-link" rel="nofollow">cmt-cloud-native-003</a></th></tr><tr><td class="confluenceTd"><p>Boris Ayala Molina<br/>Christopher G. Seidl<br/>Cristiane R. Hirata<br/>Daniel Vaz Ribeiro<br/>Federico Cassina<br/>Thiago da Silva Cavazzana<br/><br/></p></td><td class="confluenceTd">Fernando Vinagre<br/>Fernando M. Sinagra<br/>Gabriel Sakuno Nunes<br/>Gustavo A. Luna<br/>Igor Pereira<br/>Javier Palacios</td><td class="confluenceTd">Juan Manuel Gonzalez<br/>Leonardo Fraga<br/>Paulo R. Tavares<br/>Rafael Dfh<br/>Ricardo Polisel Alves<br/>Sergio Gonzalez Aleman</td></tr><tr><td class="highlight-yellow confluenceTd" title="Background colour : Yellow" colspan="3" data-highlight-colour="yellow"><p><strong>TO SIGN IN…</strong></p><ol><li style="text-align: left;"><strong>FIND YOUR NAME ABOVE.</strong></li><li style="text-align: left;"><strong>CLICK THE LINK HEADING THE COLUMN IN WHICH YOUR NAME APPEARS</strong></li></ol></td></tr><tr><td colspan="3" class="confluenceTd"><div class="content-wrapper"><p><br/></p><ul><li><p>Use your enterprise credentials if challenged.</p></li></ul><p><strong>If you are not passed directly through to the AWS Console:</strong></p><ul><li>Select the <strong>Platform_Developer</strong> role on the relevant account, <br/>then click the <strong>Sign in</strong> button.<br/><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" width="444" src="attachments/297979438/442187872.png" data-image-src="attachments/297979438/442187872.png" data-unresolved-comment-count="0" data-linked-resource-id="442187872" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2021-5-20_18-28-34.png" data-base-url="https://alm.accenture.com/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="297979438" data-linked-resource-container-version="40"></span></li></ul></div></td></tr></tbody></table></div><h2 id="AWSAnalytics2Step1:ReviewS3Data-AftertheAWSManagementConsoleloads,verifythatyourAWSaccountregionissettoUSEast(N.Virginia).YoucanfindthisintherightuppercornernexttotheRole/username@AWS-accountlisting.ClickontheregionandselectUSEast(N.Virginia)."><img class="emoticon emoticon-tick" src="images/icons/emoticons/check.svg" data-emoticon-name="tick" alt="(tick)"/><span style="color: rgb(23,43,77);font-size: 14.0px;letter-spacing: 0.0px;"> After the AWS Management Console loads,verify that your AWS account region is set to </span><strong style="color: rgb(23,43,77);font-size: 14.0px;letter-spacing: 0.0px;">US East (N. Virginia).</strong><span style="color: rgb(23,43,77);font-size: 14.0px;letter-spacing: 0.0px;"> You can find this in the right upper corner next to the Role</span><em style="color: rgb(23,43,77);font-size: 14.0px;letter-spacing: 0.0px;">/</em><span style="color: rgb(23,43,77);font-size: 14.0px;letter-spacing: 0.0px;">username @ AWS-account listing</span><em style="color: rgb(23,43,77);font-size: 14.0px;letter-spacing: 0.0px;">.</em><span style="color: rgb(23,43,77);font-size: 14.0px;letter-spacing: 0.0px;"> Click on the region and select US East (N. Virginia).</span><strong><br/></strong></h2><p><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" width="444" src="attachments/297979438/350895864.png" data-image-src="attachments/297979438/350895864.png" data-unresolved-comment-count="0" data-linked-resource-id="350895864" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2019-10-3_10-20-54.png" data-base-url="https://alm.accenture.com/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="297979438" data-linked-resource-container-version="40"></span></p><p>That's it! Access the relevant service per instructions below.</p><p><strong>Note that your credentials will time out after approximately 15 minutes of inactivity in the console.</strong> <br/><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" width="333" src="attachments/297979438/300302778.png" data-image-src="attachments/297979438/300302778.png" data-unresolved-comment-count="0" data-linked-resource-id="300302778" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2018-10-7_12-52-14.png" data-base-url="https://alm.accenture.com/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="297979438" data-linked-resource-container-version="40"></span><br/>When this happens, <strong>ignore the Reload prompt and instead simply point your browser again to <a href="https://go.accenture.com/awsgo/" class="external-link" rel="nofollow">https://go.accenture.com/awsgo/</a></strong> and sign back in to the account you were signed-in to previously.</p></p><p><br/></p><hr/><h3 id="AWSAnalytics2Step1:ReviewS3Data-S3Storage"><span style="color: rgb(0,34,102);"><span class="inline-comment-marker" data-ref="fb282725-0748-4646-ac0d-9e88b278e0f7">S3 Storage</span></span></h3><ol><li>Once you are signed into AWS, you will see all available AWS services. From that list, search for <strong>S3</strong> in the quick search field and select the top-returning entry.<br/><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" height="250" src="attachments/295031662/295031666.png" data-image-src="attachments/295031662/295031666.png" data-unresolved-comment-count="0" data-linked-resource-id="295031666" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2018-4-24 1:17:17.png" data-base-url="https://alm.accenture.com/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="295031662" data-linked-resource-container-version="48"></span></li><li><p class="auto-cursor-target">Once in the <strong>Amazon S3</strong> Console, search for the relevant<strong> </strong>bucket (<strong>differs per account – see illustration below</strong>) and click to navigate into its contents.</p><div class="table-wrap"><table class="wrapped confluenceTable"><colgroup><col style="width: 358.0px;"/><col/><col/></colgroup><tbody><tr><td class="confluenceTd"><div class="content-wrapper"><p>If you are using the <strong>cmt-cloud-native-001</strong> account:<br/>search for <strong>cmt-cn-glue</strong> <br/><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image confluence-thumbnail" width="250" src="attachments/295031662/304758020.png" data-image-src="attachments/295031662/304758020.png" data-unresolved-comment-count="0" data-linked-resource-id="304758020" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2018-11-15_11-29-1.png" data-base-url="https://alm.accenture.com/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="295031662" data-linked-resource-container-version="48"></span></p></div></td><td colspan="1" class="confluenceTd"><div class="content-wrapper"><p>If you are using the <strong>cmt-cloud-native-002</strong> account:<br/>search for <strong>cmt-cn-002-glue</strong></p><p><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image confluence-thumbnail" width="250" src="attachments/295031662/422332629.png" data-image-src="attachments/295031662/422332629.png" data-unresolved-comment-count="0" data-linked-resource-id="422332629" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2021-1-25_13-15-19.png" data-base-url="https://alm.accenture.com/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="295031662" data-linked-resource-container-version="48"></span></p></div></td><td colspan="1" class="confluenceTd"><div class="content-wrapper"><p><span>If you are using the </span><strong>cmt-cloud-native-003</strong><span> account:</span><br/><span>search for </span><strong>cmt-cn-003-glue<br/></strong><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image confluence-thumbnail" width="250" src="attachments/295031662/332402836.png" data-image-src="attachments/295031662/332402836.png" data-unresolved-comment-count="0" data-linked-resource-id="332402836" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2019-5-13_9-59-41.png" data-base-url="https://alm.accenture.com/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="295031662" data-linked-resource-container-version="48"></span></p></div></td></tr></tbody></table></div></li><li><p>In the bucket, you will see one or more folders. The <strong>Product-Marketing-data</strong> folder holds a test file that you can use as your test data for this quick exercise.<br/><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" width="555" src="attachments/295031662/435708609.png" data-image-src="attachments/295031662/435708609.png" data-unresolved-comment-count="0" data-linked-resource-id="435708609" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2021-4-14_9-3-57.png" data-base-url="https://alm.accenture.com/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="295031662" data-linked-resource-container-version="48"></span></p></li></ol><hr/><h3 id="AWSAnalytics2Step1:ReviewS3Data-ReviewData"><span style="color: rgb(0,34,102);">Review Data</span></h3><ol><li><strong>Download data to the desktop.</strong><br/>Tick the check box next to the <strong>prodmarketing.csv</strong><em> </em>file, then choose <strong>Download</strong> from the Actions menu.<br/><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" width="444" src="attachments/295031662/435708620.png" data-image-src="attachments/295031662/435708620.png" data-unresolved-comment-count="0" data-linked-resource-id="435708620" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2021-4-14_9-5-37.png" data-base-url="https://alm.accenture.com/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="295031662" data-linked-resource-container-version="48"></span><br/><br/><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" width="444" src="attachments/295031662/435708623.png" data-image-src="attachments/295031662/435708623.png" data-unresolved-comment-count="0" data-linked-resource-id="435708623" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2021-4-14_9-7-11.png" data-base-url="https://alm.accenture.com/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="295031662" data-linked-resource-container-version="48"></span><br/><br/>Different web browsers handle file downloads differently<em>. </em><strong>Save the file to your workstation.</strong> Make note of its location, then browse to it in your system's file explorer.<br/><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" width="320" src="attachments/295031662/295039821.png" data-image-src="attachments/295031662/295039821.png" data-unresolved-comment-count="0" data-linked-resource-id="295039821" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="img-19.07.2018-02.png" data-base-url="https://alm.accenture.com/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="295031662" data-linked-resource-container-version="48"></span><br/><br/></li><li><strong>Open data.</strong><br/>Open the file with MS Excel - double click the file.<br/><span class="confluence-embedded-file-wrapper"><img class="confluence-embedded-image" src="attachments/295031662/295039850.png" data-image-src="attachments/295031662/295039850.png" data-unresolved-comment-count="0" data-linked-resource-id="295039850" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="img-19.07.2018-03.png" data-base-url="https://alm.accenture.com/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="295031662" data-linked-resource-container-version="48"></span><br/><br/></li><li><p><strong>Explore data.</strong><br/>This dataset contains product marketing information: <span style="color: rgb(68,68,68);">the historical data for customers who have been offered products similar to a bank term deposit</span>. For this exercise, we are using a formatted dataset from <a href="http://archive.ics.uci.edu/ml/index.php" class="external-link" rel="nofollow">UCI Machine Learning Repository</a> via AWS.<strong><strong><strong><span class="confluence-embedded-file-wrapper"><img class="confluence-embedded-image" src="attachments/295031662/295039897.png" data-image-src="attachments/295031662/295039897.png" data-unresolved-comment-count="0" data-linked-resource-id="295039897" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="img-19.07.2018-04.png" data-base-url="https://alm.accenture.com/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="295031662" data-linked-resource-container-version="48"></span><br/></strong></strong></strong></p><p><strong><strong>prodmarketing.csv </strong>is a dataset with 41,189 records.  Each record has 20 parameters and one binary attribute.</strong><p style="text-align: left;"><em>Demographics:</em></p><ul><li><code>age</code>: Customer's age (numeric)</li><li><code>job</code>: Type of job (categorical: 'admin.', 'services', ...)</li><li><code>marital</code>: Marital status (categorical: 'married', 'single', ...)</li><li><code>education</code>: Level of education (categorical: 'basic.4y', 'high.school', ...)</li></ul><p style="text-align: left;"><em>Past customer events:</em></p><ul><li><code>default</code>: Has credit in default? (categorical: 'no', 'unknown', ...)</li><li><code>housing</code>: Has housing loan? (categorical: 'no', 'yes', ...)</li><li><code>loan</code>: Has personal loan? (categorical: 'no', 'yes', ...)</li></ul><p style="text-align: left;"><em>Past direct marketing contacts:</em></p><ul><li><code>contact</code>: Contact communication type (categorical: 'cellular', 'telephone', ...)</li><li><code>month</code>: Last contact month of year (categorical: 'may', 'nov', ...)</li><li><code>day_of_week</code>: Last contact day of the week (categorical: 'mon', 'fri', ...)</li><li><code>duration</code>: Last contact duration, in seconds (numeric). Important note: If duration = 0 then<span> </span><code>y</code><span> </span>= 'no'.</li></ul><p style="text-align: left;"><em>Campaign information:</em></p><ul><li><code>campaign</code>: Number of contacts performed during this campaign and for this client (numeric, includes last contact)</li><li><code>pdays</code>: Number of days that passed by after the client was last contacted from a previous campaign (numeric)</li><li><code>previous</code>: Number of contacts performed before this campaign and for this client (numeric)</li><li><code>poutcome</code>: Outcome of the previous marketing campaign (categorical: 'nonexistent','success', ...)</li></ul><p style="text-align: left;"><em>External environment factors:</em></p><ul><li><code>emp.var.rate</code>: Employment variation rate - quarterly indicator (numeric)</li><li><code>cons.price.idx</code>: Consumer price index - monthly indicator (numeric)</li><li><code>cons.conf.idx</code>: Consumer confidence index - monthly indicator (numeric)</li><li><code>euribor3m</code>: Euribor 3 month rate - daily indicator (numeric)</li><li><code>nr.employed</code>: Number of employees - quarterly indicator (numeric)</li></ul><p style="text-align: left;"><em>Attribute:</em></p><ul><li><code>y</code>: Has the client subscribed a term deposit? (binary: 'yes','no')</li></ul></p></li></ol></div>
+</div>
+</div>
+<div class="columnLayout single" data-layout="single">
+<div class="cell normal" data-type="normal">
+<div class="innerCell">
+<hr/><p><strong>Next &gt; <a href="295031676.html">AWS Analytics 2 - Step 2: Crawl with Glue</a></strong></p></div>
+</div>
+</div>
+</div>
+                    </div>
+
+                                                            <div class="pageSection group">
+                        <div class="pageSectionHeader">
+                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
+                        </div>
+
+                        <div class="greybox" align="left">
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031662/295031663.png">1.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031662/295031664.png">2.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031662/295031665.png">image2018-4-24 1:15:54.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031662/295031666.png">image2018-4-24 1:17:17.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031662/295031667.png">image2018-4-24 1:20:33.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031662/295031668.png">image2018-4-24 1:35:11.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031662/295031669.png">image2018-4-24 1:42:38.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031662/295031670.png">image2018-4-24 1:45:5.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031662/295031671.png">image2018-4-24 2:1:20.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031662/295031672.png">image2018-5-9 9:31:0.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031662/295031673.png">image2018-5-9 9:32:55.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031662/295031674.png">image2018-5-9 9:34:7.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031662/295031675.png">image2018-5-9 9:36:25.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031662/295032695.png">img-17.07.2018-01.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031662/295032697.png">img-17.07.2018-02.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031662/295039808.png">img-19.07.2018-01.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031662/295039821.png">img-19.07.2018-02.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031662/295039850.png">img-19.07.2018-03.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031662/295039897.png">img-19.07.2018-04.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031662/304758017.png">image2018-11-15_11-27-33.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031662/304758018.png">image2018-11-15_11-28-11.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031662/304758020.png">image2018-11-15_11-29-1.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031662/304758024.png">image2018-11-15_11-31-37.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031662/308439033.png">image2018-12-20_17-30-40.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031662/332402836.png">image2019-5-13_9-59-41.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031662/422332629.png">image2021-1-25_13-15-19.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031662/435708605.png">image2021-4-14_9-3-11.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031662/435708609.png">image2021-4-14_9-3-57.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031662/435708620.png">image2021-4-14_9-5-37.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031662/435708623.png">image2021-4-14_9-7-11.png</a> (image/png)
+                                <br/>
+                                                    </div>
+                    </div>
+                    
+                 
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on May 26, 2021 17:56</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

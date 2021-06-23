@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>New IT Delivery Patterns : AWS Analytics 2 - Step 4: Create Datasource in QuickSight</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">New IT Delivery Patterns</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="295031660.html">AWS Analytics 2: Marketing Analytics with Quicksight</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            New IT Delivery Patterns : AWS Analytics 2 - Step 4:  Create Datasource in QuickSight
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                        
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Karina Jonane</span>, last modified by <span class='editor'> Thomas R. Evans</span> on May 21, 2021
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <div class="contentLayout2">
+<div class="columnLayout single" data-layout="single">
+<div class="cell normal" data-type="normal">
+<div class="innerCell">
+<p>This step shows you how to use AWS QuickSight to connect to your database (DB) and quickly visualize your dataset with the AWS QuickSight Service.</p><p>What is QuickSight?  QuickSight is an easy-to-use, cloud-based business analytics tool that makes it easy to build visualizations.  Its features are not as powerful (yet) as tools like Tableau and Splunk and its biggest weakness is its limited ability to share and export outside of AWS.  But ease of use is a major feature and expect AWS to continue rolling out additional capabilities.</p><p><a href="https://aws.amazon.com/quicksight/" class="external-link" rel="nofollow">Learn more about AWS QuickSight</a>.</p><hr/><p><br/></p></div>
+</div>
+</div>
+<div class="columnLayout single" data-layout="single">
+<div class="cell normal" data-type="normal">
+<div class="innerCell">
+<h3 id="AWSAnalytics2Step4:CreateDatasourceinQuickSight-AccessQuickSight">Access QuickSight</h3><p><ol><li>Click on <strong>Services</strong> in the left upper corner of the page. In the drop-down list of all available services, choose (click on) <strong>QuickSight</strong>, or type <strong>QuickSight </strong>in quick search field.<br/><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" width="750" src="attachments/288926238/288935245.png" data-image-src="attachments/288926238/288935245.png" data-unresolved-comment-count="0" data-linked-resource-id="288935245" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="17.png" data-base-url="https://alm.accenture.com/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="288926238" data-linked-resource-container-version="24"></span></li><li><p>If you are not recognized as among the CMT QuickSight account users, you will be redirected to sign-up as an account user. You will need to enter <strong>your enterprise email</strong> to confirm you are added. Then click <strong>Continue</strong>.<br/><img class="emoticon emoticon-information" src="images/icons/emoticons/information.svg" data-emoticon-name="information" alt="(info)"/> <strong>Note:</strong>  When returning to QuickSight at a later date, you may need to repeat this process, as CMT periodically removes names from the QuickSight user list to help manage costs.<br/><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" width="700" src="attachments/288926238/291950641.png" data-image-src="attachments/288926238/291950641.png" data-unresolved-comment-count="0" data-linked-resource-id="291950641" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="img-08052018-01.png" data-base-url="https://alm.accenture.com/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="288926238" data-linked-resource-container-version="24"></span></p></li></ol><div class="confluence-information-macro confluence-information-macro-tip"><p class="title">TIP</p><span class="aui-icon aui-icon-small aui-iconfont-approve confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p><strong>Access to QuickSight requires that you are signed in to AWS. If your session expires...</strong><br/>1. Log into <a href="https://go.accenture.com/awsgo/" class="external-link" rel="nofollow">go.accenture.com/awsgo/</a>.<br/>2. Choose QuickSight from all services list (or search for it via the quick search field).<br/>3. This will automatically redirect you to the service.</p></div></div></p><hr/><h3 id="AWSAnalytics2Step4:CreateDatasourceinQuickSight-CreateanewdatasetwithAthenaasthedatasource">Create a new data set with Athena as the data source</h3><ol><li><span class="inline-comment-marker" data-ref="946fb73f-b54a-4b18-8fd2-ff49797513d2">Confirm your selected region </span><span class="inline-comment-marker" data-ref="946fb73f-b54a-4b18-8fd2-ff49797513d2">(located in the right upper corner) is <strong>US East (</strong></span><strong><span class="inline-comment-marker" data-ref="946fb73f-b54a-4b18-8fd2-ff49797513d2">N. Virginia).</span></strong><span class="inline-comment-marker" data-ref="946fb73f-b54a-4b18-8fd2-ff49797513d2"><br/><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" width="222" src="attachments/295031724/403204246.png" data-image-src="attachments/295031724/403204246.png" data-unresolved-comment-count="0" data-linked-resource-id="403204246" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2020-10-7_14-35-16.png" data-base-url="https://alm.accenture.com/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="295031724" data-linked-resource-container-version="58"></span><br/></span></li><li>Click <strong>New analysis</strong> in the <strong><span style="color: rgb(255,0,0);">upper-right corner of the QuickSight screen</span></strong>.<br/><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" width="333" src="attachments/295031724/442173720.png" data-image-src="attachments/295031724/442173720.png" data-unresolved-comment-count="0" data-linked-resource-id="442173720" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2021-5-12_10-46-43.png" data-base-url="https://alm.accenture.com/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="295031724" data-linked-resource-container-version="58"></span></li><li>Click to create a <strong>New data set,</strong> then click to select <strong>Athena</strong> from among the list of available New Data Sources.<br/><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" width="333" src="attachments/295031724/295031733.png" data-image-src="attachments/295031724/295031733.png" data-unresolved-comment-count="0" data-linked-resource-id="295031733" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2018-5-11 13:3:35.png" data-base-url="https://alm.accenture.com/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="295031724" data-linked-resource-container-version="58"></span><br/><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" width="555" src="attachments/295031724/295031728.png" data-image-src="attachments/295031724/295031728.png" data-unresolved-comment-count="0" data-linked-resource-id="295031728" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2018-5-11 13:10:35.png" data-base-url="https://alm.accenture.com/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="295031724" data-linked-resource-container-version="58"></span></li><li><strong>Give your data source a name you will recognize</strong>, leave Athena workgroup unchanged, then click <strong>Validate connection</strong>.<br/><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" height="250" src="attachments/295031724/403204261.png" data-image-src="attachments/295031724/403204261.png" data-unresolved-comment-count="0" data-linked-resource-id="403204261" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2020-10-7_14-45-26.png" data-base-url="https://alm.accenture.com/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="295031724" data-linked-resource-container-version="58"></span><br/><br/></li><li>After validation completes, click <strong>Create data source</strong>.<br/><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" height="250" src="attachments/295031724/295031730.png" data-image-src="attachments/295031724/295031730.png" data-unresolved-comment-count="0" data-linked-resource-id="295031730" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2018-5-11 13:15:1.png" data-base-url="https://alm.accenture.com/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="295031724" data-linked-resource-container-version="58"></span></li><li><strong>Choose the database you created</strong> when you <a href="295031676.html">configured the crawler's output</a> and select the <strong>product_marketing_data </strong>table, then click <strong>Edit/Preview data.</strong><br/><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" width="530" src="attachments/295031724/295036244.png" data-image-src="attachments/295031724/295036244.png" data-unresolved-comment-count="0" data-linked-resource-id="295036244" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="img-18.07.2018-03.png" data-base-url="https://alm.accenture.com/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="295031724" data-linked-resource-container-version="58"></span></li><li>This is your pending analysis. Confirm that <strong>Direct query</strong> is the selected mode in the upper left-hand corner of the preview page, rename the analysis (optional),  then click <strong>Save &amp; visualize</strong>.<br/><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" width="555" src="attachments/295031724/422342165.png" data-image-src="attachments/295031724/422342165.png" data-unresolved-comment-count="0" data-linked-resource-id="422342165" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2021-1-29_10-24-42.png" data-base-url="https://alm.accenture.com/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="295031724" data-linked-resource-container-version="58"></span></li></ol><p>You are now ready to create visualizations of the analysis.</p></div>
+</div>
+</div>
+<div class="columnLayout single" data-layout="single">
+<div class="cell normal" data-type="normal">
+<div class="innerCell">
+<hr/><p><strong>Nxt &gt; <a href="312606004.html">AWS Analytics 2: Visualize!</a></strong></p></div>
+</div>
+</div>
+<div class="columnLayout single" data-layout="single">
+<div class="cell normal" data-type="normal">
+<div class="innerCell">
+<img class="wysiwyg-unknown-macro" src="../plugins/servlet/confluence/placeholder/unknown-macro"/></div>
+</div>
+</div>
+</div>
+                    </div>
+
+                                                            <div class="pageSection group">
+                        <div class="pageSectionHeader">
+                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
+                        </div>
+
+                        <div class="greybox" align="left">
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031724/295031725.png">1.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031724/295031726.png">2.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031724/295031727.png">image2018-5-11 13:0:59.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031724/295031728.png">image2018-5-11 13:10:35.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031724/295031729.png">image2018-5-11 13:12:46.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031724/295031730.png">image2018-5-11 13:15:1.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031724/295031731.png">image2018-5-11 13:28:31.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031724/295031732.png">image2018-5-11 13:35:51.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031724/295031733.png">image2018-5-11 13:3:35.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031724/295031734.png">image2018-5-11 13:51:6.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031724/295031735.png">image2018-5-11 13:52:5.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031724/295036244.png">img-18.07.2018-03.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031724/295036250.png">img-18.07.2018-04.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031724/295036280.png">img-18.07.2018-05.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031724/295036288.png">img-18.07.2018-06.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031724/295263390.png">image2018-7-31 9:12:14.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031724/295267258.png">image2018-8-1 17:52:43.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031724/295267259.png">image2018-8-1 17:54:34.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031724/295267263.png">image2018-8-1 18:3:44.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031724/295267264.png">image2018-8-1 18:7:57.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031724/295267265.png">image2018-8-1 18:9:28.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031724/295269455.png">image2018-8-2 10:56:4.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031724/295269608.png">image2018-8-2 13:20:23.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031724/295269610.png">image2018-8-2 13:22:49.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031724/295269611.png">image2018-8-2 13:24:33.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031724/295269619.png">image2018-8-2 13:25:35.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031724/295269620.png">image2018-8-2 13:27:0.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031724/295269624.png">image2018-8-2 13:32:43.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031724/295269631.png">image2018-8-2 13:35:49.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031724/312605983.png">image2019-1-18_15-36-54.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031724/312605985.png">image2019-1-18_15-39-41.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031724/312605991.png">image2019-1-18_15-58-0.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031724/312605992.png">image2019-1-18_16-0-43.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031724/312605993.png">image2019-1-18_16-2-36.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031724/312605994.png">image2019-1-18_16-4-8.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031724/312605995.png">image2019-1-18_16-5-3.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031724/403204246.png">image2020-10-7_14-35-16.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031724/403204251.png">image2020-10-7_14-36-13.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031724/403204261.png">image2020-10-7_14-45-26.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031724/403204268.png">image2020-10-7_14-50-5.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031724/422342165.png">image2021-1-29_10-24-42.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/295031724/442173720.png">image2021-5-12_10-46-43.png</a> (image/png)
+                                <br/>
+                                                    </div>
+                    </div>
+                    
+                 
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on May 26, 2021 17:56</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>
